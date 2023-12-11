@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
-
+//OguzKagan
 @Table(name = "brands")
 @Entity
 @Getter
