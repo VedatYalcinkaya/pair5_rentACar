@@ -15,7 +15,7 @@ Tobeto pair 5 project Java 1A
 <b>*Rümeysa Kopuz*</b><br>
 <img src="https://github.com/RumeysaaKopuz.png" alt="Rümeysa Kopuz" width="200"/>
 
-<b>*Vedat YALÇINKAYA*</b><br>
+<a href="https://github.com/VedatYalcinkaya" target="_blank">Vedat Yalçınkaya</a><br>
 <img src="https://github.com/VedatYalcinkaya.png" alt="Vedat Yalçınkaya" width="200"/>
 
 
