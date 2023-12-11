@@ -1,5 +1,5 @@
-# pair5_rentACar
-Tobeto pair 5 project Java 1A
+# Rent a Car Project
+Tobeto Pair 5 - Java 1A
 
 --Collaborators-- <br>
 
