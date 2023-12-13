@@ -1,29 +1,16 @@
-# Rent a Car Project
-Tobeto Pair 5 - Java 1A
+<div align="center">
+  <b><h1>PAIR 5 - Rent A Car Web Application Project</h1></b>
+</div>
 
---Collaborators-- <br>
+<div align="center">
+  <img src="https://i.ibb.co/QmQ0rYv/PAIR-5-Logo.png" alt="PAIR-5-Logo" border="0" width="600">
+</div>
 
-<a href="https://github.com/Tarikdirek" target="_blank"><b>*Tarık Direk*</b></a><br>
-<img src="https://github.com/Tarikdirek.png" alt="Tarık Direk" width="200"/>
+As aspiring full-stack developers, we are excited to embark on the journey of creating a Rent-a-Car web application using Java and React. This project aims to deliver a user-friendly platform that enables users to effortlessly rent vehicles, manage bookings, and explore a wide range of car options. From the back-end powered by Java to the dynamic and interactive front-end with React, our team is dedicated to crafting a seamless and efficient rental experience. 
 
-<a href="https://github.com/ozgegul" target="_blank"><b>*Özge Gül*</b></a><br>
-<img src="https://github.com/ozgegul.png" alt="Özge Gül" width="200"/>
+<div align="center">
+  <b><h1>Collaborators</h1></b>
+</div>
 
-<a href="https://github.com/oguzkaganbati" target="_blank"><b>*Oğuz Kağan Batı*</b></a><br>
-<img src="https://github.com/oguzkaganbati.png" alt="Oğuz Kağan BATI" width="200"/>
-
-<a href="https://github.com/RumeysaaKopuz" target="_blank"><b>*Rümeysa Kopuz*</b></a><br>
-<img src="https://github.com/RumeysaaKopuz.png" alt="Rümeysa Kopuz" width="200"/>
-
-<a href="https://github.com/VedatYalcinkaya" target="_blank"><b>*Vedat Yalçınkaya*</b></a><br>
-<img src="https://github.com/VedatYalcinkaya.png" alt="Vedat Yalçınkaya" width="200"/>
-
-
-
-
-
-
-
-
-
-
+| <div align="center"><img src="https://github.com/Tarikdirek.png" alt="Tarık Direk" width="200"/><br/><b>[Tarık Direk](https://github.com/Tarikdirek)</b></div> | <div align="center"><img src="https://github.com/ozgegul.png" alt="Özge Gül" width="200"/><br/><b>[Özge Gül](https://github.com/ozgegul)</b></div> | <div align="center"><img src="https://github.com/oguzkaganbati.png" alt="Oğuz Kağan BATI" width="200"/><br/><b>[Oğuz Kağan Batı](https://github.com/oguzkaganbati)</b></div> | <div align="center"><img src="https://github.com/RumeysaaKopuz.png" alt="Rümeysa Kopuz" width="200"/><br/><b>[Rümeysa Kopuz](https://github.com/RumeysaaKopuz)</b></div> | <div align="center"><img src="https://github.com/VedatYalcinkaya.png" alt="Vedat Yalçınkaya" width="200"/><br/><b>[Vedat Yalçınkaya](https://github.com/VedatYalcinkaya)</b></div> |
+| --- | --- | --- | --- | --- |
