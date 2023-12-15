@@ -1,4 +1,4 @@
-package com.tobeto.pair5.services.dtos.rental.requests;
+package com.tobeto.pair5.services.dtos.user.requests;
 
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DeleteRentalRequest {
+public class DeleteUserRequest {
     @Positive(message = "Please enter a valid Id.")
     private int id;
 }

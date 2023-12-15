@@ -4,7 +4,6 @@ import com.tobeto.pair5.services.dtos.brand.requests.AddBrandRequest;
 import com.tobeto.pair5.services.dtos.brand.requests.DeleteBrandRequest;
 import com.tobeto.pair5.services.dtos.brand.requests.UpdateBrandRequest;
 import com.tobeto.pair5.services.dtos.brand.responses.GetAllBrandResponse;
-import com.tobeto.pair5.services.dtos.brand.responses.GetBrandNameResponse;
 
 import java.util.List;
 
