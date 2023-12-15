@@ -2,14 +2,19 @@ package com.tobeto.pair5.services.concretes;
 
 import com.tobeto.pair5.core.utilities.mappers.ModelMapperService;
 import com.tobeto.pair5.entities.Car;
+import com.tobeto.pair5.entities.Model;
 import com.tobeto.pair5.repositories.CarRepository;
 import com.tobeto.pair5.services.abstracts.CarService;
+import com.tobeto.pair5.services.abstracts.ColorService;
+import com.tobeto.pair5.services.abstracts.ModelService;
 import com.tobeto.pair5.services.dtos.car.requests.AddCarRequest;
 import com.tobeto.pair5.services.dtos.car.requests.DeleteCarRequest;
 import com.tobeto.pair5.services.dtos.car.requests.UpdateCarRequest;
 import com.tobeto.pair5.services.dtos.car.responses.GetAllCarResponse;
 import com.tobeto.pair5.services.dtos.car.responses.GetByIdCarResponse;
 import com.tobeto.pair5.services.dtos.car.responses.GetCustomCarResponse;
+import com.tobeto.pair5.services.dtos.color.responses.GetAllColorResponse;
+import com.tobeto.pair5.services.dtos.model.responses.GetAllModelResponse;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,13 +28,25 @@ import java.util.stream.Collectors;
 public class CarManager implements CarService {
     private ModelMapperService modelMapperService;
     private CarRepository carRepository;
+    private ModelService modelService;
+    private ColorService colorService;
 
 
 
 
     @Override
     public void add(AddCarRequest request) {
+        if (!checkIfModelExists(request.getModelId())) {
+            throw new RuntimeException("The model not exist!" );
+        }
+        if (!checkIfColorExists(request.getColorId())) {
+            throw new RuntimeException("The color not exist!" );
+        }
+        if (carRepository.existsByPlate(request.getPlate())) {
+            throw new RuntimeException("Plate is already exist!" );
+        }
         Car car = this.modelMapperService.forRequest().map(request, Car.class);
+        car.getPlate().replaceAll("\\s","");
         carRepository.save(car);
     }
 
@@ -80,4 +97,16 @@ public class CarManager implements CarService {
         return carResponses;
 
     }
+
+    private boolean checkIfModelExists(int id) {
+        GetAllModelResponse model= modelService.getById(id);
+        return model != null;
+    }
+    private boolean checkIfColorExists(int id) {
+        GetAllColorResponse color= colorService.getById(id);
+        return color != null;
+    }
+
+
+
 }

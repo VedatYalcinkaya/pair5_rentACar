@@ -8,6 +8,7 @@ import com.tobeto.pair5.services.abstracts.ColorService;
 import com.tobeto.pair5.services.dtos.color.requests.AddColorRequest;
 import com.tobeto.pair5.services.dtos.color.requests.DeleteColorRequest;
 import com.tobeto.pair5.services.dtos.color.requests.UpdateColorRequest;
+import com.tobeto.pair5.services.dtos.color.responses.GetAllColorResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -38,5 +39,12 @@ public class ColorManager implements ColorService {
 
 
         colorRepository.saveAndFlush(colorToUpdate);
+    }
+
+    @Override
+    public GetAllColorResponse getById(int id) {
+        Color color = colorRepository.findById(id).orElseThrow();
+        GetAllColorResponse response = this.modelMapperService.forResponse().map(color,GetAllColorResponse.class);
+        return response;
     }
 }
