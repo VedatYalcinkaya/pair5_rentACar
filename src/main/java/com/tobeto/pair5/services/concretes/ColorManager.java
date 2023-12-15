@@ -12,6 +12,8 @@ import com.tobeto.pair5.services.dtos.color.responses.GetAllColorResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @AllArgsConstructor
 @Service
 public class ColorManager implements ColorService {
@@ -20,6 +22,11 @@ public class ColorManager implements ColorService {
 
     @Override
     public void add(AddColorRequest request) {
+
+        if (colorRepository.existsByNameIgnoreCase(request.getName())) {
+            throw new RuntimeException("Color already exists");
+        }
+
         Color color = this.modelMapperService.forRequest().map(request, Color.class);
         colorRepository.save(color);
     }
@@ -47,4 +54,15 @@ public class ColorManager implements ColorService {
         GetAllColorResponse response = this.modelMapperService.forResponse().map(color,GetAllColorResponse.class);
         return response;
     }
+
+    @Override
+    public List<GetAllColorResponse> getAll() {
+        List<Color> colors = colorRepository.findAll();
+        List<GetAllColorResponse> response = colors.stream()
+                .map(color -> this.modelMapperService.forResponse().map(color,GetAllColorResponse.class))
+                .toList();
+        return  response;
+    }
+
+
 }
