@@ -9,6 +9,7 @@ import com.tobeto.pair5.services.abstracts.ModelService;
 import com.tobeto.pair5.services.dtos.model.requests.AddModelRequest;
 import com.tobeto.pair5.services.dtos.model.requests.DeleteModelRequest;
 import com.tobeto.pair5.services.dtos.model.requests.UpdateModelRequest;
+import com.tobeto.pair5.services.dtos.model.responses.GetAllModelResponse;
 import lombok.AllArgsConstructor;
 
 import org.springframework.stereotype.Service;
@@ -41,5 +42,12 @@ public class ModelManager implements ModelService {
 
 
         modelRepository.saveAndFlush(modelToUpdate);
+    }
+
+    @Override
+    public GetAllModelResponse getById(int id) {
+        Model model = modelRepository.findById(id).orElseThrow();
+        GetAllModelResponse response = this.modelMapperService.forResponse().map(model, GetAllModelResponse.class);
+        return response;
     }
 }
