@@ -3,7 +3,7 @@
 </div>
 
 <div align="center">
-  <img src="https://i.ibb.co/Ypm7XVS/PAIR-5-Logo.jpg" alt="PAIR-5-Logo" border="0" width="600">
+  <img src="https://i.ibb.co/QmQ0rYv/PAIR-5-Logo.png" alt="PAIR-5-Logo" border="0" width="600">
 </div>
 
 As aspiring full-stack developers, we are excited to embark on the journey of creating a Rent-a-Car web application using Java and React. This project aims to deliver a user-friendly platform that enables users to effortlessly rent vehicles, manage bookings, and explore a wide range of car options. From the back-end powered by Java to the dynamic and interactive front-end with React, our team is dedicated to crafting a seamless and efficient rental experience. 

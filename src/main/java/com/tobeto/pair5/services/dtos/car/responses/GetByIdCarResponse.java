@@ -1,6 +1,8 @@
 package com.tobeto.pair5.services.dtos.car.responses;
 
+import com.tobeto.pair5.services.dtos.color.responses.GetAllColorResponse;
 import com.tobeto.pair5.services.dtos.color.responses.GetColorNameResponse;
+import com.tobeto.pair5.services.dtos.model.responses.GetAllModelResponse;
 import com.tobeto.pair5.services.dtos.model.responses.GetModelNameResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;

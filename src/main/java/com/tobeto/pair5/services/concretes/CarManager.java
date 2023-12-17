@@ -2,6 +2,7 @@ package com.tobeto.pair5.services.concretes;
 
 import com.tobeto.pair5.core.utilities.mappers.ModelMapperService;
 import com.tobeto.pair5.entities.Car;
+import com.tobeto.pair5.entities.Model;
 import com.tobeto.pair5.repositories.CarRepository;
 import com.tobeto.pair5.services.abstracts.CarService;
 import com.tobeto.pair5.services.abstracts.ColorService;
@@ -15,7 +16,9 @@ import com.tobeto.pair5.services.dtos.car.responses.GetCustomCarResponse;
 import com.tobeto.pair5.services.dtos.color.responses.GetAllColorResponse;
 import com.tobeto.pair5.services.dtos.model.responses.GetAllModelResponse;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,6 +30,9 @@ public class CarManager implements CarService {
     private CarRepository carRepository;
     private ModelService modelService;
     private ColorService colorService;
+
+
+
 
     @Override
     public void add(AddCarRequest request) {
@@ -62,6 +68,7 @@ public class CarManager implements CarService {
         carRepository.saveAndFlush(carToUpdate);
     }
 
+
     @Override
     public List<GetAllCarResponse> getAll() {
         List<Car> cars = carRepository.findAll();
@@ -71,6 +78,7 @@ public class CarManager implements CarService {
                 .collect(Collectors.toList());
         return carResponses;
     }
+
 
     @Override
     public GetByIdCarResponse getById(int id) {
@@ -98,5 +106,7 @@ public class CarManager implements CarService {
         GetAllColorResponse color= colorService.getById(id);
         return color != null;
     }
+
+
 
 }
