@@ -15,7 +15,7 @@ public class UpdateCarRequest {
     private int id;
     @Positive(message = "kilometer must be a positive number!")
     private int kilometer;
-    @Pattern(regexp = "^(0[1-9]|[1-8][0-9]|9[0-8]) [A-Z]{1,2} \\d{3,4}$", message = "Invalid Turkish license plate format!")
+    @Pattern(regexp = "^(0[1-9]|[1-8][0-9]|9[0-8])[A-Z\\s]{1,3}\\d{2,4}$", message = "Invalid Turkish license plate format!")
     private String plate;
 
 

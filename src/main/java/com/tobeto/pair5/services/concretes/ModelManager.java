@@ -15,6 +15,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @AllArgsConstructor
 @Service
@@ -26,9 +27,7 @@ public class ModelManager implements ModelService {
 
     @Override
     public void add(AddModelRequest request) {
-        if (checkIfBrandNotExists(request.getBrand().getId())) {
-            throw new RuntimeException("Brand does not exist");
-        }
+        checkIsBrandExists(request.getBrand().getId());
         Model model = this.modelMapperService.forRequest().map(request, Model.class);
         modelRepository.save(model);
     }
@@ -44,6 +43,7 @@ public class ModelManager implements ModelService {
     public void update(UpdateModelRequest request) {
         Model modelToUpdate = modelRepository.findById(request.getId())
                 .orElseThrow();
+        checkIsBrandExists(request.getBrand().getId());
 
         this.modelMapperService.forRequest().map(request, modelToUpdate);
 
@@ -71,5 +71,13 @@ public class ModelManager implements ModelService {
             return false;
         }
         return true;
+    }
+
+    private void checkIsBrandExists(int id){
+        try {
+            GetAllBrandResponse brand = brandService.getById(id);
+        }catch (NoSuchElementException ex){
+            throw new RuntimeException("Brand Not Found!");
+        }
     }
 }

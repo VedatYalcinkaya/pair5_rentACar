@@ -22,10 +22,7 @@ public class ColorManager implements ColorService {
 
     @Override
     public void add(AddColorRequest request) {
-
-        if (colorRepository.existsByNameIgnoreCase(request.getName())) {
-            throw new RuntimeException("Color already exists");
-        }
+        checkIsColorAlreadyExists(request.getName());
 
         Color color = this.modelMapperService.forRequest().map(request, Color.class);
         colorRepository.save(color);
@@ -41,6 +38,7 @@ public class ColorManager implements ColorService {
     public void update(UpdateColorRequest request) {
         Color colorToUpdate = colorRepository.findById(request.getId())
                 .orElseThrow();
+        checkIsColorAlreadyExists(request.getName());
 
         this.modelMapperService.forRequest().map(request, colorToUpdate);
 
@@ -62,6 +60,12 @@ public class ColorManager implements ColorService {
                 .map(color -> this.modelMapperService.forResponse().map(color,GetAllColorResponse.class))
                 .toList();
         return  response;
+    }
+
+    public void checkIsColorAlreadyExists(String color){
+        if (colorRepository.existsByNameIgnoreCase(color)){
+            throw new RuntimeException("Color already exists");
+        }
     }
 
 

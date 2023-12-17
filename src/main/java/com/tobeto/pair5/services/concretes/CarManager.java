@@ -18,6 +18,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
@@ -30,15 +31,10 @@ public class CarManager implements CarService {
 
     @Override
     public void add(AddCarRequest request) {
-        if (!checkIfModelExists(request.getModelId())) {
-            throw new RuntimeException("The model not exist!" );
-        }
-        if (!checkIfColorExists(request.getColorId())) {
-            throw new RuntimeException("The color not exist!" );
-        }
-        if (carRepository.existsByPlate(request.getPlate())) {
-            throw new RuntimeException("Plate is already exist!" );
-        }
+        checkIsModelExists(request.getModelId());
+        checkIsColorExists(request.getColorId());
+        checkIsPlateAlreadyExists(request.getPlate());
+
         Car car = this.modelMapperService.forRequest().map(request, Car.class);
         car.getPlate().replaceAll("\\s","");
         carRepository.save(car);
@@ -52,11 +48,14 @@ public class CarManager implements CarService {
 
     @Override
     public void update(UpdateCarRequest request) {
+        checkIsModelExists(request.getModelId());
+        checkIsColorExists(request.getColorId());
 
         Car carToUpdate = carRepository.findById(request.getId())
                 .orElseThrow();
 
         this.modelMapperService.forRequest().map(request, carToUpdate);
+        carToUpdate.getPlate().replaceAll("\\s","");
 
 
         carRepository.saveAndFlush(carToUpdate);
@@ -90,13 +89,27 @@ public class CarManager implements CarService {
 
     }
 
-    private boolean checkIfModelExists(int id) {
-        GetAllModelResponse model= modelService.getById(id);
-        return model != null;
+    private void checkIsModelExists(int modelId) {
+        try {
+            GetAllModelResponse model = modelService.getById(modelId);
+        } catch (NoSuchElementException ex) {
+            throw new RuntimeException("Model not found!");
+        }
     }
-    private boolean checkIfColorExists(int id) {
-        GetAllColorResponse color= colorService.getById(id);
-        return color != null;
+
+    private void checkIsColorExists(int colorId) {
+        try {
+            GetAllColorResponse color= colorService.getById(colorId);
+        }catch (NoSuchElementException ex) {
+            throw new RuntimeException("Color not found!");
+        }
     }
+
+    private void checkIsPlateAlreadyExists(String plate){
+        if (carRepository.existsByPlate(plate)){
+            throw new RuntimeException(("Plate is already exists!"));
+        }
+    }
+
 
 }

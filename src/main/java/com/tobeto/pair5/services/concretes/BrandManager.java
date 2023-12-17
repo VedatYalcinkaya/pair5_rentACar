@@ -2,7 +2,6 @@ package com.tobeto.pair5.services.concretes;
 
 import com.tobeto.pair5.core.utilities.mappers.ModelMapperService;
 import com.tobeto.pair5.entities.Brand;
-import com.tobeto.pair5.entities.Car;
 import com.tobeto.pair5.repositories.BrandRepository;
 import com.tobeto.pair5.services.abstracts.BrandService;
 import com.tobeto.pair5.services.dtos.brand.requests.AddBrandRequest;
@@ -13,7 +12,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -24,10 +22,7 @@ public class BrandManager implements BrandService {
 
     @Override
     public void add(AddBrandRequest request) {
-        if (brandRepository.existsByNameIgnoreCase(request.getName())) {
-            throw new RuntimeException("Brand already exists");
-        }
-
+        checkIsBrandAlreadyExists(request.getName());
         Brand brand = this.modelMapperService.forRequest().map(request, Brand.class);
         brandRepository.save(brand);
     }
@@ -42,6 +37,7 @@ public class BrandManager implements BrandService {
     public void update(UpdateBrandRequest request) {
         Brand brandToUpdate = brandRepository.findById(request.getId())
                 .orElseThrow();
+        checkIsBrandAlreadyExists(request.getName());
 
         this.modelMapperService.forRequest().map(request, brandToUpdate);
 
@@ -62,5 +58,11 @@ public class BrandManager implements BrandService {
         Brand brand = brandRepository.findById(id).orElseThrow();
         GetAllBrandResponse brandResponse = this.modelMapperService.forResponse().map(brand,GetAllBrandResponse.class);
         return brandResponse;
+    }
+
+    public void checkIsBrandAlreadyExists(String brand){
+        if (brandRepository.existsByNameIgnoreCase(brand)){
+            throw new RuntimeException("Brand already exists!");
+        }
     }
 }

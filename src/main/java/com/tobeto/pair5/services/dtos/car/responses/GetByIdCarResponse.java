@@ -13,6 +13,7 @@ public class GetByIdCarResponse {
     private int id;
     private int kilometer;
     private String plate;
+    private int year;
     private double dailyPrice;
 
     private GetModelNameResponse modelName;
