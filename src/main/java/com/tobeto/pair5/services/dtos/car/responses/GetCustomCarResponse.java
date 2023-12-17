@@ -20,6 +20,4 @@ public class GetCustomCarResponse {
     private GetColorNameResponse colorName;
     private GetBrandNameResponse brandName;
 
-
-
 }
