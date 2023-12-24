@@ -1,11 +1,7 @@
 package com.tobeto.pair5.services.concretes;
 
 import com.tobeto.pair5.core.utilities.mappers.ModelMapperService;
-<<<<<<< HEAD
 import com.tobeto.pair5.entities.concretes.Brand;
-=======
-import com.tobeto.pair5.entities.Brand;
->>>>>>> 0a5049cb28eb37f3f3c93f8321d264d0a0de6e72
 import com.tobeto.pair5.repositories.BrandRepository;
 import com.tobeto.pair5.services.abstracts.BrandService;
 import com.tobeto.pair5.services.dtos.brand.requests.AddBrandRequest;

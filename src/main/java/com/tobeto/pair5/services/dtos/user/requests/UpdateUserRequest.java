@@ -13,8 +13,7 @@ import java.time.LocalDate;
 public class UpdateUserRequest {
     @Positive(message = "Please enter a valid Id.")
     private int id;
-    private String name;
-    private String surname;
     private String email;
+    private String password;
     private LocalDate birthDate;
 }
