@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 @AllArgsConstructor
@@ -31,21 +32,10 @@ public class RentalManager implements RentalService {
     @Override
     public void add(AddRentalRequest request) {
 
-        if (request.getEndDate().isBefore(request.getStartDate())) {
-            throw new RuntimeException("When renting a car, the end date must be later than the start date");
-        }
-
-        if (!checkIfCarNotExists(request.getCar().getId())) {
-            throw new RuntimeException("Car not found!");
-        }
-
-        if(!checkIfUserNotExists(request.getUser().getId())){
-            throw new RuntimeException("User not found!");
-        }
-
-        if(!checkIfRentalIsValid(request.getStartDate(), request.getEndDate(), 25)){
-            throw new RuntimeException("A car cannot be rented more than 25 days!");
-        }
+        checkIsStartDateBeforeThanEndDate(request.getStartDate(), request.getEndDate());
+        checkIsCarExists(request.getCar().getId());
+        checkIsUserExists(request.getUser().getId());
+        checkIsRentalValid(request.getStartDate(), request.getEndDate(), 25);
 
         Rental rental = this.modelMapperService.forRequest().map(request, Rental.class);
 
@@ -68,21 +58,10 @@ public class RentalManager implements RentalService {
     public void update(UpdateRentalRequest request) {
         Rental rentalToUpdate = rentalRepository.findById(request.getId()).orElseThrow();
 
-        if (request.getEndDate().isBefore(request.getStartDate())) {
-            throw new RuntimeException("When renting a car, the end date must be later than the start date");
-        }
-
-        if (!checkIfCarNotExists(request.getCar().getId())) {
-            throw new RuntimeException("Car not found!");
-        }
-
-        if(!checkIfUserNotExists(request.getUser().getId())){
-            throw new RuntimeException("User not found!");
-        }
-
-        if(!checkIfRentalIsValid(request.getStartDate(), request.getEndDate(), 25)){
-            throw new RuntimeException("A car cannot be rented more than 25 days!");
-        }
+        checkIsStartDateBeforeThanEndDate(request.getStartDate(), request.getEndDate());
+        checkIsCarExists(request.getCar().getId());
+        checkIsUserExists(request.getUser().getId());
+        checkIsRentalValid(request.getStartDate(), request.getEndDate(), 25);
 
         Rental rental = this.modelMapperService.forRequest().map(request, Rental.class);
 
@@ -111,27 +90,11 @@ public class RentalManager implements RentalService {
         return response;
     }
 
-    private boolean checkIfCarNotExists(int id) {
-        GetByIdCarResponse car = this.carService.getById(id);
-
-        if (car != null) {
-            return true;
+    private void checkIsRentalValid(LocalDate start, LocalDate end, int maxDays){
+        long daysBetween = ChronoUnit.DAYS.between(start, end);
+        if (!(daysBetween >= 0 && daysBetween <= maxDays)){
+            throw new RuntimeException("A car cannot be rented more than 25 days!");
         }
-        return false;
-    }
-
-    private boolean checkIfUserNotExists(int id) {
-        GetByIdUserResponse user = this.userService.getById(id);
-
-        if (user != null) {
-            return true;
-        }
-        return false;
-    }
-
-    private boolean checkIfRentalIsValid(LocalDate start, LocalDate end, int maxDays) {
-            long daysBetween = ChronoUnit.DAYS.between(start, end);
-            return daysBetween >= 0 && daysBetween <= maxDays;
     }
 
     private double calculateTotalPrice(LocalDate start, LocalDate end, double dailyPrice){
@@ -139,5 +102,26 @@ public class RentalManager implements RentalService {
         return daysBetween * dailyPrice;
     }
 
+    private void checkIsStartDateBeforeThanEndDate (LocalDate startDate, LocalDate endDate){
+        if (endDate.isBefore(startDate)){
+            throw new RuntimeException("When renting a car, the end date must be later than the start date");
+        }
+    }
+
+    private void checkIsCarExists(int carId){
+        try {
+            GetByIdCarResponse car = carService.getById(carId);
+        }catch (NoSuchElementException ex) {
+            throw new RuntimeException("Car not found!");
+        }
+    }
+
+    private void checkIsUserExists(int userId){
+        try {
+            GetByIdUserResponse user = userService.getById(userId);
+        }catch (NoSuchElementException ex) {
+            throw new RuntimeException("User not found!");
+        }
+    }
 }
 
