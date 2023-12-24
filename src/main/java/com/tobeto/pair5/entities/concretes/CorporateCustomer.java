@@ -13,8 +13,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CorporateCustomer extends BaseEntity {
+
     @Column(name="company_name")
     private String companyName;
+
     @Column(name="tax_no")
     private String taxNo;
 

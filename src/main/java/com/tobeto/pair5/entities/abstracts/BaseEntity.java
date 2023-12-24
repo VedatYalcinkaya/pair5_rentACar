@@ -5,7 +5,7 @@ import lombok.Data;
 
 import java.time.LocalDate;
 
-// Generic
+
 @MappedSuperclass
 @Data
 public abstract class BaseEntity {
