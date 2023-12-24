@@ -1,7 +1,7 @@
 package com.tobeto.pair5.services.concretes;
 
 import com.tobeto.pair5.core.utilities.mappers.ModelMapperService;
-import com.tobeto.pair5.entities.Model;
+import com.tobeto.pair5.entities.concretes.Model;
 import com.tobeto.pair5.repositories.ModelRepository;
 import com.tobeto.pair5.services.abstracts.BrandService;
 import com.tobeto.pair5.services.abstracts.ModelService;

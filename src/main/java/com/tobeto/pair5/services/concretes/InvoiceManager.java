@@ -1,7 +1,7 @@
 package com.tobeto.pair5.services.concretes;
 
 import com.tobeto.pair5.core.utilities.mappers.ModelMapperService;
-import com.tobeto.pair5.entities.Invoice;
+import com.tobeto.pair5.entities.concretes.Invoice;
 import com.tobeto.pair5.repositories.InvoiceRepository;
 import com.tobeto.pair5.services.abstracts.InvoiceService;
 import com.tobeto.pair5.services.dtos.invoice.requests.AddInvoiceRequest;

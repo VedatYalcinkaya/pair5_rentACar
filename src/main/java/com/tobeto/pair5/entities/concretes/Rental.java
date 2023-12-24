@@ -1,23 +1,20 @@
-package com.tobeto.pair5.entities;
+package com.tobeto.pair5.entities.concretes;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.tobeto.pair5.entities.abstracts.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Table(name = "rentals")
 @Entity
 @Getter
 @Setter
-public class Rental {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+public class Rental extends BaseEntity {
+
 
     @Column(name = "start_date")
     private LocalDate startDate;
@@ -33,9 +30,6 @@ public class Rental {
 
     @Column(name = "end_kilometer")
     private int endKilometer;
-
-    @Column(name = "total_price")
-    private double totalPrice;
 
     @ManyToOne
     @JoinColumn(name = "car_id")

@@ -1,7 +1,7 @@
 package com.tobeto.pair5.services.concretes;
 
 import com.tobeto.pair5.core.utilities.mappers.ModelMapperService;
-import com.tobeto.pair5.entities.Rental;
+import com.tobeto.pair5.entities.concretes.Rental;
 import com.tobeto.pair5.repositories.RentalRepository;
 import com.tobeto.pair5.services.abstracts.CarService;
 import com.tobeto.pair5.services.abstracts.RentalService;
@@ -53,7 +53,7 @@ public class RentalManager implements RentalService {
 
         rental.setStartKilometer(carResponse.getKilometer());
 
-        rental.setTotalPrice(calculateTotalPrice(request.getStartDate(), request.getEndDate(),carResponse.getDailyPrice()));
+        //rental.setTotalPrice(calculateTotalPrice(request.getStartDate(), request.getEndDate(),carResponse.getDailyPrice()));
 
         rentalRepository.save(rental);
     }
@@ -90,7 +90,7 @@ public class RentalManager implements RentalService {
 
         rental.setStartKilometer(carResponse.getKilometer());
 
-        rental.setTotalPrice(calculateTotalPrice(request.getStartDate(), request.getEndDate(),carResponse.getDailyPrice()));
+        //rental.setTotalPrice(calculateTotalPrice(request.getStartDate(), request.getEndDate(),carResponse.getDailyPrice()));
 
         this.modelMapperService.forRequest().map(request, rentalToUpdate);
         rentalRepository.saveAndFlush(rentalToUpdate);

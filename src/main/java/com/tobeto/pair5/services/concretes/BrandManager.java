@@ -1,8 +1,7 @@
 package com.tobeto.pair5.services.concretes;
 
 import com.tobeto.pair5.core.utilities.mappers.ModelMapperService;
-import com.tobeto.pair5.entities.Brand;
-import com.tobeto.pair5.entities.Car;
+import com.tobeto.pair5.entities.concretes.Brand;
 import com.tobeto.pair5.repositories.BrandRepository;
 import com.tobeto.pair5.services.abstracts.BrandService;
 import com.tobeto.pair5.services.dtos.brand.requests.AddBrandRequest;
@@ -13,7 +12,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
