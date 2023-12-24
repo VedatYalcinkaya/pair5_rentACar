@@ -19,8 +19,4 @@ public class User extends BaseEntity {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "birth-date")
-    private LocalDate birthDate;
-
-
 }

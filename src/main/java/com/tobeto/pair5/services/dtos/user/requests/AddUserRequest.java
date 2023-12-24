@@ -12,5 +12,4 @@ import java.time.LocalDate;
 public class AddUserRequest {
     private String email;
     private String password;
-    private LocalDate birthDate;
 }

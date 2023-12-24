@@ -13,5 +13,4 @@ public class GetAllUserResponse {
     private int id;
     private String email;
     private String password;
-    private LocalDate birthDate;
 }

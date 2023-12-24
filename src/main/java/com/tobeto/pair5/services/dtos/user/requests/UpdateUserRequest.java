@@ -15,5 +15,4 @@ public class UpdateUserRequest {
     private int id;
     private String email;
     private String password;
-    private LocalDate birthDate;
 }
